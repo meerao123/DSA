@@ -24,11 +24,60 @@ void LeftRotate(int arr[], int d,int n){
     }
 
 }
+void RightRotate(int arr[],int d, int n ){
 
+    int temp[d];
+    int i,j;
+    j=0;
+    for(i=n-d;i<n;i++){
+         
+        temp[j]=arr[i];
+        j++;
+    }
+    for(i=n-1;i>=d;i--){
+
+        arr[i]=arr[i-d];
+
+    }
+
+    for(i=0;i<d;i++){
+        arr[i]=temp[i];
+    }
+
+    for(i=0;i<n;i++){
+        printf("%d\t",arr[i]);
+    }
+
+}
+
+int Rotate(int arr[],int n,char dir,int d){
+
+   
+    if(dir=='l'|| dir=='L'){
+        LeftRotate(arr,d,n);
+    }
+    else{
+        RightRotate(arr,d,n);
+    }
+
+
+}
 int main(){
- 
-int arr[]={1,2,3,4,5,6,7};
-LeftRotate(arr,3,7);
-return 0;
 
+    int n,d;
+    char dir; 
+     printf("enter number of elements in the array: ");
+    scanf("%d",&n);
+    int arr[n];
+    printf("enter array elements: ");
+    for(int i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+    printf("enter the direction of rotation:l or r: ");
+    getchar();
+    scanf("%c",&dir);
+    printf("enter count of rotation: ");
+    scanf("%d",&d);
+    d=d%n;
+    Rotate(arr,n,dir,d);
 }
